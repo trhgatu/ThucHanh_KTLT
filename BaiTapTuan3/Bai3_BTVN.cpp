@@ -5,6 +5,29 @@
 #define MAX_DONG 100
 #define MAX_COT 100
 
+
+int chuaChuSo2(int so) {
+    while (so > 0) {
+        if (so % 10 == 2) {
+            return 1;
+        }
+        so /= 10;
+    }
+    return 0;
+}
+int demPhanTuChuaChuSo2(int a[][MAX_COT], int m, int n) {
+    int dem = 0;
+
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            if (chuaChuSo2(a[i][j])) {
+                dem++;
+            }
+        }
+    }
+
+    return dem;
+}
 void taoVaXuatMaTran(int a[][MAX_COT], int m, int n, int k)
 {
     srand(time(NULL));
@@ -98,6 +121,8 @@ void hienThiMenu()
     printf("1. Tao va xuat ma tran a chua cac phan tu ngau nhien\n");
     printf("2. Xuat cac cot chi chua so le\n");
     printf("3. Tim phan tu lon nhat tren bien cua ma tran\n");
+    printf("4. Dem so luong phan tu co chua chu so 2\n");
+    printf("10. Thoat\n");
     printf("Nhap lua chon: ");
 }
 
@@ -131,6 +156,15 @@ int main()
                 printf("Phan tu lon nhat tren bien cua ma tran: %d\n", maxBien);
             }
             break;
+        case 4:
+                {
+                    int dem = demPhanTuChuaChuSo2(maTran, m, n);
+                    printf("So luong phan tu co chua chu so 2: %d\n", dem);
+                }
+                break;
+        case 10:
+                printf("Thoat chuong trinh.\n");
+                break;
         default:
             printf("Lua chon khong hop le. Vui long chon lai.\n");
         }
