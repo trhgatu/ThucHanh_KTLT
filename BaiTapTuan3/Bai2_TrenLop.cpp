@@ -27,11 +27,30 @@ void xuatDuongCheoChinh(int n, int **a) {
     }
     printf("\n");
 }
+void xuatDuongCheoSongSong(int n, int **a) {
+    printf("Cac phan tu tren duong cheo song song voi duong cheo chinh:\n");
 
+    for (int k = 1; k < n; k++) {
+        printf("Duong cheo song song voi duong cheo chinh (k = %d):\n", k);
+        for (int i = 0; i < n - k; i++) {
+            printf("%d ", a[i][i + k]);
+        }
+        printf("\n");
+    }
+
+    for (int k = 1; k < n; k++) {
+        printf("Duong cheo song song voi duong cheo chinh (k = -%d):\n", k);
+        for (int i = k; i < n; i++) {
+            printf("%d ", a[i][i - k]);
+        }
+        printf("\n");
+    }
+}
 void hienThiMenu() {
     printf("\nMENU:\n");
     printf("1. Tao va xuat ma tran a chua cac phan tu ngau nhien\n");
     printf("2. Xuat cac phan tu tren duong cheo chinh\n");
+    printf("3. Xuat cac phan tu tren duong cheo song song voi duong cheo chinh\n");
     printf("3. Thoat\n");
     printf("Nhap lua chon cua ban: ");
 }
@@ -66,6 +85,9 @@ int main() {
                 xuatDuongCheoChinh(n, a);
                 break;
             case 3:
+                xuatDuongCheoSongSong(n, a);
+                break;
+            case 4:
                 printf("Thoat chuong trinh.\n");
                 break;
             default:
