@@ -120,18 +120,31 @@ int timMinCot(int a[][MAX_COT], int dong, int cot, int cotHienTai) {
     return min;
 }
 
-void xuatCacPhanTuCucDai(int a[][MAX_COT], int m, int n) {
+void xuatPhanTuCucDai(int a[][MAX_COT], int m, int n) {
     printf("Cac phan tu cuc dai:\n");
     for (int i = 0; i < m; i++) {
         for (int j = 0; j < n; j++) {
-            int maxHang = timMaxHang(a, i, n);
-            int minCot = timMinCot(a, m, n, j);
+            int maxHang = a[i][0];
+            for (int k = 1; k < n; k++) {
+                if (a[i][k] > maxHang) {
+                    maxHang = a[i][k];
+                }
+            }
+
+            int minCot = a[0][j];
+            for (int k = 1; k < m; k++) {
+                if (a[k][j] < minCot) {
+                    minCot = a[k][j];
+                }
+            }
+
             if (a[i][j] == maxHang && a[i][j] == minCot) {
                 printf("(%d, %d): %d\n", i + 1, j + 1, a[i][j]);
             }
         }
     }
 }
+
 
 void xuatCacPhanTuHoangHau(int a[][MAX_COT], int m, int n){
     printf("Cac phan tu hoang hau: \n");
@@ -184,6 +197,7 @@ void xuatDongChan(int a[][MAX_COT], int m, int n) {
         }
     }
 }
+
 int soSanh(const void *a, const void *b) {
     return (*(int*)a - *(int*)b);
 }
@@ -249,7 +263,7 @@ int main()
             xuatDuongBien(maTran, m, n);
             break;
         case 5:
-            xuatCacPhanTuCucDai(maTran, m, n);
+            xuatPhanTuCucDai(maTran, m, n);
             break;
         case 6:
             xuatCacPhanTuHoangHau(maTran, m, n);
