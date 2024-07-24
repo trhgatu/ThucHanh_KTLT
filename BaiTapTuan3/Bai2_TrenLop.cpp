@@ -46,12 +46,25 @@ void xuatDuongCheoSongSong(int n, int **a) {
         printf("\n");
     }
 }
+int timMaxTamGiacTren(int n, int **a) {
+    int max = a[0][0];
+
+    for (int i = 0; i < n; i++) {
+        for (int j = i; j < n; j++) {
+            if (a[i][j] > max) {
+                max = a[i][j];
+            }
+        }
+    }
+
+    return max;
+}
 void hienThiMenu() {
     printf("\nMENU:\n");
     printf("1. Tao va xuat ma tran a chua cac phan tu ngau nhien\n");
     printf("2. Xuat cac phan tu tren duong cheo chinh\n");
     printf("3. Xuat cac phan tu tren duong cheo song song voi duong cheo chinh\n");
-    printf("3. Thoat\n");
+    printf("4. Tim phan tu max thuoc tam giac tren duong cheo chinh\n");
     printf("Nhap lua chon cua ban: ");
 }
 
@@ -88,6 +101,12 @@ int main() {
                 xuatDuongCheoSongSong(n, a);
                 break;
             case 4:
+                {
+                    int max = timMaxTamGiacTren(n, a);
+                    printf("Phan tu max thuoc tam giac tren duong cheo chinh: %d\n", max);
+                }
+                break;
+            case 5:
                 printf("Thoat chuong trinh.\n");
                 break;
             default:
