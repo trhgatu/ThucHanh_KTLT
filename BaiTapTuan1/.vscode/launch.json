@@ -15,10 +15,10 @@
       ],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/ACER/Documents/Documents/LuuTruHocTap/Git/ThucHanh_KTLT/BaiTapTuan1",
+      "cwd": "C:\\MinGw\\bin",
       "program": "c:/Users/ACER/Documents/Documents/LuuTruHocTap/Git/ThucHanh_KTLT/BaiTapTuan1/build/Debug/outDebug",
       "MIMode": "gdb",
-      "miDebuggerPath": "gdb",
+      "miDebuggerPath": "C:\\MinGw\\bin\\gdb.exe",
       "setupCommands": [
         {
           "description": "Enable pretty-printing for gdb",
