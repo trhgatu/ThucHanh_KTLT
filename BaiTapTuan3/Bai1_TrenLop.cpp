@@ -170,10 +170,37 @@ void hienThiMenu()
     printf("5. Xuat cac phan tu cuc dai\n");
     printf("6. Xuat cac phan tu hoang hau\n");
     printf("7. Xuat cac phan tu la diem yen ngua\n");
+    printf("8. Xuat dong chi chua so chan\n");
     printf("7. Thoat\n");
     printf("Nhap lua chon: ");
 }
-
+int laSoChan(int x) {
+    return x % 2 == 0;
+}
+void xuatDongChan(int a[], int n) {
+    for (int i = 0; i < n; i++) {
+        printf("%5d", a[i]);
+    }
+    printf("\n");
+}
+void xuatDongChan(int a[][MAX_COT], int m, int n) {
+    printf("Cac dong chi chua so chan:\n");
+    for (int i = 0; i < m; i++) {
+        int dongChuaChan = 1;
+        for (int j = 0; j < n; j++) {
+            if (!laSoChan(a[i][j])) {
+                dongChuaChan = 0;
+                break;
+            }
+        }
+        if (dongChuaChan) {
+            for (int j = 0; j < n; j++) {
+                printf("%5d", a[i][j]);
+            }
+            printf("\n");
+        }
+    }
+}
 int main()
 {
     int maTran[MAX_DONG][MAX_COT];
@@ -212,6 +239,9 @@ int main()
             break;
         case 7:
             xuatDiemYenNgua(maTran, m, n);
+            break;
+         case 8:
+            xuatDongChan(maTran, m, n);
             break;
         default:
             printf("Lua chon khong hop le. Vui long chon lai.\n");
