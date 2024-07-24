@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-
+#include <algorithm>
 void taoMaTran(int n, int **a) {
     srand(time(0));
     for (int i = 0; i < n; i++) {
@@ -59,12 +59,41 @@ int timMaxTamGiacTren(int n, int **a) {
 
     return max;
 }
+
+void sapXepMaTranZicZac(int n, int **a) {
+    int *temp = (int *)malloc(n * n * sizeof(int));
+    int index = 0;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            temp[index++] = a[i][j];
+        }
+    }
+
+    std::sort(temp, temp + n * n);
+
+
+    index = 0;
+    for (int i = 0; i < n; i++) {
+        if (i % 2 == 0) {
+            for (int j = 0; j < n; j++) {
+                a[i][j] = temp[index++];
+            }
+        } else {
+            for (int j = n - 1; j >= 0; j--) {
+                a[i][j] = temp[index++];
+            }
+        }
+    }
+
+    free(temp);
+}
 void hienThiMenu() {
     printf("\nMENU:\n");
     printf("1. Tao va xuat ma tran a chua cac phan tu ngau nhien\n");
     printf("2. Xuat cac phan tu tren duong cheo chinh\n");
     printf("3. Xuat cac phan tu tren duong cheo song song voi duong cheo chinh\n");
     printf("4. Tim phan tu max thuoc tam giac tren duong cheo chinh\n");
+    printf("5. Sap xep ma tran theo kieu zic-zac\n");
     printf("Nhap lua chon cua ban: ");
 }
 
@@ -107,7 +136,11 @@ int main() {
                 }
                 break;
             case 5:
-                printf("Thoat chuong trinh.\n");
+                sapXepMaTranZicZac(n, a);
+                printf("Ma tran sau khi sap xep zic-zac:\n");
+                xuatMaTran(n, a);
+                break;
+            case 6:
                 break;
             default:
                 printf("Lua chon khong hop le. Vui long thu lai.\n");
