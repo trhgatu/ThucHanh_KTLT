@@ -87,6 +87,18 @@ void sapXepMaTranZicZac(int n, int **a) {
 
     free(temp);
 }
+void sapXepDuongCheoChinh(int n, int **a) {
+    int *duongCheoChinh = (int *)malloc(n * sizeof(int));
+    for (int i = 0; i < n; i++) {
+        duongCheoChinh[i] = a[i][i];
+    }
+    std::sort(duongCheoChinh, duongCheoChinh + n);
+    for (int i = 0; i < n; i++) {
+        a[i][i] = duongCheoChinh[i];
+    }
+
+    free(duongCheoChinh);
+}
 void hienThiMenu() {
     printf("\nMENU:\n");
     printf("1. Tao va xuat ma tran a chua cac phan tu ngau nhien\n");
@@ -94,6 +106,7 @@ void hienThiMenu() {
     printf("3. Xuat cac phan tu tren duong cheo song song voi duong cheo chinh\n");
     printf("4. Tim phan tu max thuoc tam giac tren duong cheo chinh\n");
     printf("5. Sap xep ma tran theo kieu zic-zac\n");
+    printf("6. Sap xep duong cheo chinh\n");
     printf("Nhap lua chon cua ban: ");
 }
 
@@ -141,6 +154,11 @@ int main() {
                 xuatMaTran(n, a);
                 break;
             case 6:
+            sapXepDuongCheoChinh(n, a);
+                printf("Ma tran sau khi sap xep duong cheo chinh:\n");
+                xuatMaTran(n, a);
+                break;
+            case 7:
                 break;
             default:
                 printf("Lua chon khong hop le. Vui long thu lai.\n");
