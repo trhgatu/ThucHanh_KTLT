@@ -157,23 +157,6 @@ void xuatDiemYenNgua(int a[][MAX_COT], int m, int n) {
         }
     }
 }
-
-
-
-void hienThiMenu()
-{
-    printf("\nMENU:\n");
-    printf("1. Tao va xuat ma tran a chua cac phan tu ngau nhien\n");
-    printf("2. Tinh va xuat tong gia tri tung dong cua ma tran\n");
-    printf("3. Xuat phan tu lon nhat tren tung cot\n");
-    printf("4. Xuat cac phan tu thuoc cac duong bien tren, duoi, trai, phai\n");
-    printf("5. Xuat cac phan tu cuc dai\n");
-    printf("6. Xuat cac phan tu hoang hau\n");
-    printf("7. Xuat cac phan tu la diem yen ngua\n");
-    printf("8. Xuat dong chi chua so chan\n");
-    printf("7. Thoat\n");
-    printf("Nhap lua chon: ");
-}
 int laSoChan(int x) {
     return x % 2 == 0;
 }
@@ -201,6 +184,40 @@ void xuatDongChan(int a[][MAX_COT], int m, int n) {
         }
     }
 }
+int soSanh(const void *a, const void *b) {
+    return (*(int*)a - *(int*)b);
+}
+
+void sapXepTangDanTungDong(int a[][MAX_COT], int m, int n) {
+    for (int i = 0; i < m; i++) {
+        qsort(a[i], n, sizeof(int), soSanh);
+    }
+    printf("Ma tran sau khi sap xep tang dan theo tung dong:\n");
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            printf("%5d", a[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+
+void hienThiMenu()
+{
+    printf("\nMENU:\n");
+    printf("1. Tao va xuat ma tran a chua cac phan tu ngau nhien\n");
+    printf("2. Tinh va xuat tong gia tri tung dong cua ma tran\n");
+    printf("3. Xuat phan tu lon nhat tren tung cot\n");
+    printf("4. Xuat cac phan tu thuoc cac duong bien tren, duoi, trai, phai\n");
+    printf("5. Xuat cac phan tu cuc dai\n");
+    printf("6. Xuat cac phan tu hoang hau\n");
+    printf("7. Xuat cac phan tu la diem yen ngua\n");
+    printf("8. Xuat dong chi chua so chan\n");
+    printf("9. Sap xep ma tran tang dan theo tung dong\n");
+    printf("10. Thoat\n");
+    printf("Nhap lua chon: ");
+}
+
 int main()
 {
     int maTran[MAX_DONG][MAX_COT];
@@ -240,8 +257,14 @@ int main()
         case 7:
             xuatDiemYenNgua(maTran, m, n);
             break;
-         case 8:
+        case 8:
             xuatDongChan(maTran, m, n);
+            break;
+        case 9:
+            sapXepTangDanTungDong(maTran, m, n);
+            break;
+        case 10:
+            printf("Thoat chuong trinh.\n");
             break;
         default:
             printf("Lua chon khong hop le. Vui long chon lai.\n");
