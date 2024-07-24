@@ -99,6 +99,17 @@ int timMaxHang(int a[][MAX_COT], int dong, int cot) {
     }
     return max;
 }
+
+int timMaxCot(int a[][MAX_COT], int dong, int cot) {
+    int max = a[0][cot];
+    for (int i = 1; i < dong; i++) {
+        if (a[i][cot] > max) {
+            max = a[i][cot];
+        }
+    }
+    return max;
+}
+
 int timMinCot(int a[][MAX_COT], int dong, int cot, int cotHienTai) {
     int min = a[0][cotHienTai];
     for (int i = 1; i < dong; i++) {
@@ -108,6 +119,7 @@ int timMinCot(int a[][MAX_COT], int dong, int cot, int cotHienTai) {
     }
     return min;
 }
+
 void xuatCacPhanTuCucDai(int a[][MAX_COT], int m, int n) {
     printf("Cac phan tu cuc dai:\n");
     for (int i = 0; i < m; i++) {
@@ -115,6 +127,19 @@ void xuatCacPhanTuCucDai(int a[][MAX_COT], int m, int n) {
             int maxHang = timMaxHang(a, i, n);
             int minCot = timMinCot(a, m, n, j);
             if (a[i][j] == maxHang && a[i][j] == minCot) {
+                printf("(%d, %d): %d\n", i + 1, j + 1, a[i][j]);
+            }
+        }
+    }
+}
+
+void xuatCacPhanTuHoangHau(int a[][MAX_COT], int m, int n){
+    printf("Cac phan tu hoang hau: \n");
+    for(int i = 0 ; i < m; i++){
+        for(int j = 0 ; j < n; j++){
+            int maxHang = timMaxHang(a, i ,n);
+            int maxCot = timMaxCot(a, m, j);
+             if (a[i][j] == maxHang && a[i][j] == maxCot) {
                 printf("(%d, %d): %d\n", i + 1, j + 1, a[i][j]);
             }
         }
@@ -130,7 +155,8 @@ void hienThiMenu()
     printf("3. Xuat phan tu lon nhat tren tung cot\n");
     printf("4. Xuat cac phan tu thuoc cac duong bien tren, duoi, trai, phai\n");
     printf("5. Xuat cac phan tu cuc dai\n");
-    printf("5. Thoat\n");
+    printf("6. Xuat cac phan tu hoang hau\n");
+    printf("7. Thoat\n");
     printf("Nhap lua chon: ");
 }
 
@@ -166,6 +192,9 @@ int main()
             break;
         case 5:
             xuatCacPhanTuCucDai(maTran, m, n);
+            break;
+        case 6:
+            xuatCacPhanTuHoangHau(maTran, m, n);
             break;
         default:
             printf("Lua chon khong hop le. Vui long chon lai.\n");
