@@ -185,6 +185,40 @@ void sapXepMaTran(int a[][MAX_COT], int m, int n) {
         }
     }
 }
+void sapXepCotTang(int a[][MAX_COT], int m, int cot) {
+    for (int i = 0; i < m - 1; i++) {
+        for (int j = i + 1; j < m; j++) {
+            if (a[i][cot] > a[j][cot]) {
+                int temp = a[i][cot];
+                a[i][cot] = a[j][cot];
+                a[j][cot] = temp;
+            }
+        }
+    }
+}
+
+void sapXepCotGiam(int a[][MAX_COT], int m, int cot) {
+    for (int i = 0; i < m - 1; i++) {
+        for (int j = i + 1; j < m; j++) {
+            if (a[i][cot] < a[j][cot]) {
+                int temp = a[i][cot];
+                a[i][cot] = a[j][cot];
+                a[j][cot] = temp;
+            }
+        }
+    }
+}
+
+
+void sapXepMaTranTheoCot(int a[][MAX_COT], int m, int n) {
+    for (int j = 0; j < n; j++) {
+        if (j % 2 == 0) {
+            sapXepCotTang(a, m, j);
+        } else {
+            sapXepCotGiam(a, m, j);
+        }
+    }
+}
 
 void hienThiMenu()
 {
@@ -195,6 +229,7 @@ void hienThiMenu()
     printf("4. Dem so luong phan tu co chua chu so 2\n");
     printf("5. Xuat cac phan tu cuc tieu cua ma tran\n");
     printf("6. Sap xep ma tran: dong chan giam dan, dong le tang dan\n");
+    printf("7. Sap xep ma tran: cot chan tang dan, cot le giam dan\n");
     printf("10. Thoat\n");
     printf("Nhap lua chon: ");
 }
@@ -241,6 +276,12 @@ int main()
         case 6:
                 sapXepMaTran(maTran, m, n);
                 printf("Ma tran sau khi sap xep:\n");
+                taoVaXuatMaTran(maTran, m, n, k);
+                break;
+
+        case 7:
+                sapXepMaTranTheoCot(maTran, m, n);
+                printf("Ma tran sau khi sap xep theo yeu cau:\n");
                 taoVaXuatMaTran(maTran, m, n, k);
                 break;
         case 10:
