@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <algorithm>
+
 void taoMaTran(int n, int **a) {
     srand(time(0));
     for (int i = 0; i < n; i++) {
@@ -27,6 +28,7 @@ void xuatDuongCheoChinh(int n, int **a) {
     }
     printf("\n");
 }
+
 void xuatDuongCheoSongSong(int n, int **a) {
     printf("Cac phan tu tren duong cheo song song voi duong cheo chinh:\n");
 
@@ -46,9 +48,9 @@ void xuatDuongCheoSongSong(int n, int **a) {
         printf("\n");
     }
 }
+
 int timMaxTamGiacTren(int n, int **a) {
     int max = a[0][0];
-
     for (int i = 0; i < n; i++) {
         for (int j = i; j < n; j++) {
             if (a[i][j] > max) {
@@ -56,7 +58,6 @@ int timMaxTamGiacTren(int n, int **a) {
             }
         }
     }
-
     return max;
 }
 
@@ -70,7 +71,6 @@ void sapXepMaTranZicZac(int n, int **a) {
     }
 
     std::sort(temp, temp + n * n);
-
 
     index = 0;
     for (int i = 0; i < n; i++) {
@@ -87,6 +87,7 @@ void sapXepMaTranZicZac(int n, int **a) {
 
     free(temp);
 }
+
 void sapXepDuongCheoChinh(int n, int **a) {
     int *duongCheoChinh = (int *)malloc(n * sizeof(int));
     for (int i = 0; i < n; i++) {
@@ -99,6 +100,7 @@ void sapXepDuongCheoChinh(int n, int **a) {
 
     free(duongCheoChinh);
 }
+
 void hienThiMenu() {
     printf("\nMENU:\n");
     printf("1. Tao va xuat ma tran a chua cac phan tu ngau nhien\n");
@@ -107,6 +109,7 @@ void hienThiMenu() {
     printf("4. Tim phan tu max thuoc tam giac tren duong cheo chinh\n");
     printf("5. Sap xep ma tran theo kieu zic-zac\n");
     printf("6. Sap xep duong cheo chinh\n");
+    printf("7. Thoat\n");
     printf("Nhap lua chon cua ban: ");
 }
 
@@ -117,7 +120,6 @@ int main() {
         printf("Nhap cap cua ma tran (n >= 5): ");
         scanf("%d", &n);
     } while (n < 5);
-
 
     int **a = (int **)malloc(n * sizeof(int *));
     for (int i = 0; i < n; i++) {
@@ -154,17 +156,18 @@ int main() {
                 xuatMaTran(n, a);
                 break;
             case 6:
-            sapXepDuongCheoChinh(n, a);
+                sapXepDuongCheoChinh(n, a);
                 printf("Ma tran sau khi sap xep duong cheo chinh:\n");
                 xuatMaTran(n, a);
                 break;
             case 7:
+                printf("Thoat chuong trinh.\n");
                 break;
             default:
                 printf("Lua chon khong hop le. Vui long thu lai.\n");
                 break;
         }
-    } while (choice != 3);
+    } while (choice != 7);
 
     for (int i = 0; i < n; i++) {
         free(a[i]);
