@@ -59,7 +59,37 @@ void xuatPhanTuLonNhatTrenMoiCot(int a[][MAX_COT], int m, int n)
         printf("Cot %d: %d\n", j + 1, max);
     }
 }
+void xuatDuongBien(int a[][MAX_COT], int m, int n)
+{
+    printf("Cac phan tu thuoc cac duong bien tren, duoi, trai va phai cua ma tran:\n");
+    for (int j = 0; j < n; j++)
+    {
+        printf("%5d", a[0][j]);
+    }
+    printf("\n");
 
+    if (m > 1)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            printf("%5d", a[m - 1][j]);
+        }
+        printf("\n");
+    }
+
+    for (int i = 1; i < m - 1; i++)
+    {
+        printf("%5d", a[i][0]);
+    }
+    if (n > 1)
+    {
+        for (int i = 1; i < m - 1; i++)
+        {
+            printf("%5d", a[i][n - 1]);
+        }
+    }
+    printf("\n");
+}
 
 
 void hienThiMenu()
@@ -67,7 +97,8 @@ void hienThiMenu()
     printf("\nMENU:\n");
     printf("1. Tao va xuat ma tran a chua cac phan tu ngau nhien\n");
     printf("2. Tinh va xuat tong gia tri tung dong cua ma tran\n");
-     printf("3. Xuat phan tu lon nhat tren tung cot\n");
+    printf("3. Xuat phan tu lon nhat tren tung cot\n");
+    printf("4. Xuat cac phan tu thuoc cac duong bien tren, duoi, trai, phai\n");
     printf("5. Thoat\n");
     printf("Nhap lua chon: ");
 }
@@ -98,6 +129,9 @@ int main()
             break;
          case 3:
             xuatPhanTuLonNhatTrenMoiCot(maTran, m, n);
+            break;
+         case 4:
+            xuatDuongBien(maTran, m, n);
             break;
         default:
             printf("Lua chon khong hop le. Vui long chon lai.\n");
