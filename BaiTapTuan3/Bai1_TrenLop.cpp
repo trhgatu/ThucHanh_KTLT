@@ -145,6 +145,19 @@ void xuatCacPhanTuHoangHau(int a[][MAX_COT], int m, int n){
         }
     }
 }
+void xuatDiemYenNgua(int a[][MAX_COT], int m, int n) {
+    printf("Cac phan tu la diem yen ngua:\n");
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            int maxHang = timMaxHang(a, i, n);
+            int minCot = timMinCot(a, m, n, j);
+            if (a[i][j] == maxHang && a[i][j] == minCot) {
+                printf("(%d, %d): %d\n", i + 1, j + 1, a[i][j]);
+            }
+        }
+    }
+}
+
 
 
 void hienThiMenu()
@@ -156,6 +169,7 @@ void hienThiMenu()
     printf("4. Xuat cac phan tu thuoc cac duong bien tren, duoi, trai, phai\n");
     printf("5. Xuat cac phan tu cuc dai\n");
     printf("6. Xuat cac phan tu hoang hau\n");
+    printf("7. Xuat cac phan tu la diem yen ngua\n");
     printf("7. Thoat\n");
     printf("Nhap lua chon: ");
 }
@@ -195,6 +209,9 @@ int main()
             break;
         case 6:
             xuatCacPhanTuHoangHau(maTran, m, n);
+            break;
+        case 7:
+            xuatDiemYenNgua(maTran, m, n);
             break;
         default:
             printf("Lua chon khong hop le. Vui long chon lai.\n");
