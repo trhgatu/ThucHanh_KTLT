@@ -114,7 +114,45 @@ int timMaxBien(int a[][MAX_COT], int m, int n)
 
     return max;
 }
+void xuatPhanTuCucTieu(int a[][MAX_COT], int m, int n) {
+    printf("Cac phan tu cuc tieu trong ma tran:\n");
 
+
+    printf("Cac phan tu cuc tiểu theo hàng:\n");
+    for (int i = 0; i < m; i++) {
+        int min = a[i][0];
+        for (int j = 1; j < n; j++) {
+            if (a[i][j] < min) {
+                min = a[i][j];
+            }
+        }
+        printf("Hang %d:\n", i);
+        for (int j = 0; j < n; j++) {
+            if (a[i][j] == min) {
+                printf("%5d", a[i][j]);
+            }
+        }
+        printf("\n");
+    }
+
+
+    printf("Cac phan tu cuc tiểu theo cot:\n");
+    for (int j = 0; j < n; j++) {
+        int min = a[0][j];
+        for (int i = 1; i < m; i++) {
+            if (a[i][j] < min) {
+                min = a[i][j];
+            }
+        }
+        printf("Cot %d:\n", j);
+        for (int i = 0; i < m; i++) {
+            if (a[i][j] == min) {
+                printf("%5d", a[i][j]);
+            }
+        }
+        printf("\n");
+    }
+}
 void hienThiMenu()
 {
     printf("\nMENU:\n");
@@ -122,6 +160,7 @@ void hienThiMenu()
     printf("2. Xuat cac cot chi chua so le\n");
     printf("3. Tim phan tu lon nhat tren bien cua ma tran\n");
     printf("4. Dem so luong phan tu co chua chu so 2\n");
+    printf("5. Xuat cac phan tu cuc tieu cua ma tran\n");
     printf("10. Thoat\n");
     printf("Nhap lua chon: ");
 }
@@ -161,6 +200,9 @@ int main()
                     int dem = demPhanTuChuaChuSo2(maTran, m, n);
                     printf("So luong phan tu co chua chu so 2: %d\n", dem);
                 }
+                break;
+        case 5:
+                xuatPhanTuCucTieu(maTran, m, n);
                 break;
         case 10:
                 printf("Thoat chuong trinh.\n");
