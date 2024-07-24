@@ -54,13 +54,50 @@ void xuatCotSoLe(int a[][MAX_COT], int m, int n)
         }
     }
 }
+int timMaxBien(int a[][MAX_COT], int m, int n)
+{
+    int max = a[0][0];
+    for (int j = 0; j < n; j++)
+    {
+        if (a[0][j] > max)
+        {
+            max = a[0][j];
+        }
+    }
 
+    for (int j = 0; j < n; j++)
+    {
+        if (a[m - 1][j] > max)
+        {
+            max = a[m - 1][j];
+        }
+    }
+
+    for (int i = 1; i < m - 1; i++)
+    {
+        if (a[i][0] > max)
+        {
+            max = a[i][0];
+        }
+    }
+
+    for (int i = 1; i < m - 1; i++)
+    {
+        if (a[i][n - 1] > max)
+        {
+            max = a[i][n - 1];
+        }
+    }
+
+    return max;
+}
 
 void hienThiMenu()
 {
     printf("\nMENU:\n");
     printf("1. Tao va xuat ma tran a chua cac phan tu ngau nhien\n");
     printf("2. Xuat cac cot chi chua so le\n");
+    printf("3. Tim phan tu lon nhat tren bien cua ma tran\n");
     printf("Nhap lua chon: ");
 }
 
@@ -87,6 +124,12 @@ int main()
             break;
         case 2:
             xuatCotSoLe(maTran, m, n);
+            break;
+        case 3:
+            {
+                int maxBien = timMaxBien(maTran, m, n);
+                printf("Phan tu lon nhat tren bien cua ma tran: %d\n", maxBien);
+            }
             break;
         default:
             printf("Lua chon khong hop le. Vui long chon lai.\n");
